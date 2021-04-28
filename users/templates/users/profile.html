@@ -1,0 +1,75 @@
+{% extends "blog/base.html" %}
+
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="content-section">
+      <div class="media">
+        <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
+        <div class="media-body">
+          <h2 class="account-heading">{{ user.username }}</h2>
+          <p class="text-secondary">{{ user.email }}</p>
+        </div>
+      </div>
+      <form method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <fieldset class="form-group">
+              <legend class="border-bottom mb-4">Profile Info</legend>
+              {{ u_form|crispy }}
+              {{ p_form|crispy }}
+          </fieldset>
+
+          <tr>
+            <td>
+                <label>Hobbies</label>
+            </td>
+            <td>
+                <label>
+                    <input type="checkbox" checked> Cricket
+                </label>
+                <label>
+                    <input type="checkbox"> Football
+                </label>
+            </td>
+        </tr>
+        <br>
+        <tr>
+            <td>
+                <label>Gender</label>
+            </td>
+            <td>
+                <label>
+                    <input type="radio" value="f" name="gender"> Female</label>
+                    <label>
+                    <input value="m" type="radio" name="gender"> Male</label>
+            </td>
+        </tr>
+        <br>
+        <tr>
+            <td>
+                    <label for="city">City</label>
+            </td>
+            <td>
+                    <select id="city" name="city">
+                        <option disabled selected>--Choose City--</option>
+                            <optgroup label="Metros">
+                                <option>New Delhi</option>
+                                <option>Mumbai</option>
+                                <option>Channai</option>
+                                <option>Kolkata</option>
+                            </optgroup>
+                            <optgroup label="Others">
+                                <option>Noida</option>
+                                <option>Gurgram</option>
+                                <option>Faridabad</option>
+                                <option>Gaziabad</option>
+                            </optgroup>
+                    </select>
+            </td>
+        </tr>
+          <div class="form-group">
+              <button class="btn btn-outline-info" type="submit">Update</button>
+          </div>
+          
+      </form>
+    </div>
+{% endblock content %}
