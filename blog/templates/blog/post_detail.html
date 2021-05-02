@@ -12,8 +12,12 @@
              
               <br>
               <small class="text-muted">City-{{ post.city }}</small>
-              <small class="text-muted">Blog Genre-{{ post.genre }}</small>
-
+            
+              <small class="text-muted">Blog Genre-   
+                {% for i in post.genre %} 
+                {{ i }}
+              {% endfor %}
+            </small>
 
         {% if object.author == user %} 
           <div>

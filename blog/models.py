@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
+from django.contrib.postgres.fields import ArrayField
 
 LOCATION_CHOICES = [
     ('Mumbai', 'Mumbai'),
@@ -25,7 +26,10 @@ class Post(models.Model):
     date_posted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     city = models.CharField(choices=LOCATION_CHOICES, max_length=50, blank=True)
-    genre = models.CharField(max_length=50, blank=True)
+    genre = ArrayField(
+        models.CharField(max_length=50),
+        size=3,
+    )
     gender = models.CharField(max_length=50, blank=True)
 
 
