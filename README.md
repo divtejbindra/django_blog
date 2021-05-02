@@ -1,1 +1,1 @@
-# Django_Blogs
+# django_blog
